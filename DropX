@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Дропы</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }body {
+  background: #0f0f1a;
+  color: white;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: #15152a;
+}
+
+.balance {
+  text-align: center;
+  margin: 15px;
+  font-size: 18px;
+  color: gold;
+}
+
+.cases {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 15px;
+}
+
+.case {
+  background: #1c1c33;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.case img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.case button {
+  margin-top: 10px;
+  padding: 8px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: gold;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: #15152a;
+  padding: 10px 0;
+  border-top: 1px solid #333;
+}
+
+.nav-item {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.nav-item.active {
+  color: gold;
+}
+
+.section {
+  display: none;
+  padding-bottom: 70px;
+}
+
+.section.active {
+  display: block;
+}
+
+.inventory, .profile {
+  padding: 20px;
+}
+
+.item {
+  background: #1c1c33;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+  </style>
+</head>
+<body><header>ДРОПЫ</header>
+<div class="balance">💰 Баланс: <span id="gold">0</span> золота</div><!-- CASES --><div id="cases" class="section active">
+  <div class="cases">
+    <div class="case">
+      <img src="https://via.placeholder.com/150" />
+      <p>Кейс 1</p>
+      <button onclick="openCase()">Открыть</button>
+    </div><div class="case">
+  <img src="https://via.placeholder.com/150" />
+  <p>Кейс 2</p>
+  <button onclick="openCase()">Открыть</button>
+</div>
+
+  </div>
+</div><!-- INVENTORY --><div id="inventory" class="section">
+  <div class="inventory">
+    <h3>Инвентарь</h3>
+    <div class="item">Нож | Красный</div>
+    <div class="item">Скин | AK-47</div>
+  </div>
+</div><!-- PROFILE --><div id="profile" class="section">
+  <div class="profile">
+    <h3>Профиль</h3>
+    <p>Игрок: User</p>
+    <p>Уровень: 1</p>
+  </div>
+</div><!-- BOTTOM NAV --><div class="bottom-nav">
+  <div class="nav-item active" onclick="showTab('cases')">Кейсы</div>
+  <div class="nav-item" onclick="showTab('inventory')">Инвентарь</div>
+  <div class="nav-item" onclick="showTab('profile')">Профиль</div>
+</div><script>
+  let gold = 0;
+
+  function openCase() {
+    const reward = Math.floor(Math.random() * 100);
+    gold += reward;
+    document.getElementById('gold').innerText = gold;
+    alert('Ты получил ' + reward + ' золота!');
+  }
+
+  function showTab(tab) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script></body>
+</html>
